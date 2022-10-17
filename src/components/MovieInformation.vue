@@ -1,6 +1,13 @@
 <template>
-  <v-container>
-
+  <v-container >
+    <div max-width="300px">
+      <router-link :to=" {name: 'home' }"> <v-btn> <v-icon>mdi-arrow-left-circle</v-icon> </v-btn></router-link>
+      <v-img :src="getMovieInfo().poster" class="mx-auto" max-width="250px">
+    </v-img>
+    <h3 class="text-center">{{getMovieInfo().title}}</h3>
+    <p class="text-center">{{getMovieInfo().description}}</p>
+    </div>
+    
 
   </v-container>
 </template>
@@ -9,22 +16,22 @@
 import { mapGetters } from 'vuex';
 export default {
   name: 'MovieInformation',
+  props: { 'movieId': String },
 
   data: () => ({
-    movieInformation: null,
-
   }),
 
 
   methods: {
-getMovieInfo(){
- movieInformation = this.movies.filter(movie => movie.id === this.$route.params.movieId);
- console.log('hello', movieInformation, this.$route.params.movieId);
-}
+    getMovieInfo() {
+      return this.movies.find(movie => movie.id === Number(this.movieId));
+      
+    },
+
   },
 
   created() {
-
+    console.log(this.getMovieInfo());
   },
 
   computed: (

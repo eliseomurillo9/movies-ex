@@ -1,6 +1,6 @@
 <template>
   <div class="movie">
-  <MovieInformation movieId = {this.$route.params.movieId}></MovieInformation>
+  <MovieInformation :movieId = 'this.$route.params.movieId'></MovieInformation>
   </div>
 </template>
 
@@ -16,10 +16,12 @@ export default {
 
     },
     created() {
+    
     },
     computed: {
 
     },
+    
     components: { MovieInformation }
 }
 </script>
