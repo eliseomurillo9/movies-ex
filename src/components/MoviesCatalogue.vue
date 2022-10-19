@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="d-flex justify-space-between">
-      <v-card v-for="movie in movies" :key="movie.id" max-width="250px" class="d-flex flex-column justify-center">
+      <v-card v-for="movie in films" :key="movie.id" max-width="250px" class="d-flex flex-column justify-center">
         <v-img :src="movie.poster" position="center center">
         </v-img>
         <h3 class="text-center">{{movie.title}}</h3>
@@ -19,7 +19,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import { getFilms } from '../service/films-service'
 export default {
   name: 'MoviesCatalogue',
 
@@ -32,13 +33,14 @@ export default {
 
   },
 
-  created() {
-    console.log(this.movies);
+  mounted() {
+    getFilms();
+    console.log('request', this.films);
   },
 
   computed: (
     mapGetters([
-      'movies'
+      'films'
     ])
   )
 }
